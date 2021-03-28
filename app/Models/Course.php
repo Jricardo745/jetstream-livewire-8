@@ -25,6 +25,15 @@ class Course extends Model
         return $this->hasMany(Post::class);
     }
 
+
+    public function similar(): Collection
+    {
+        return Course::query()
+            ->where('category_id', $this->category_id)
+            ->limit(2)
+            ->get();
+    }
+
     public function getExcerptAttribute(): string
     {
         return substr($this->description, 0, 80) . '...';
