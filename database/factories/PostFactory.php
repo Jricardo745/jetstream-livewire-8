@@ -19,10 +19,12 @@ class PostFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence,
+            'free' => $this->faker->boolean,
+            'course_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

@@ -19,10 +19,15 @@ class CourseFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence,
+            'slug' => $this->faker->slug,
+            'image' => $this->faker->imageUrl(1280, 720),
+            'description' => $this->faker->text(800),
+            'user_id' => $this->faker->numberBetween(1, 5),
+            'category_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 }
