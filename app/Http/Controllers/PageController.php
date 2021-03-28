@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Contracts\View\View;
 
 class PageController extends Controller
@@ -11,8 +12,10 @@ class PageController extends Controller
         return view('index');
     }
 
-    public function course(): View
+    public function course(Course $course): View
     {
-        return view('course');
+        return view('course', [
+            'course' => $course,
+        ]);
     }
 }
