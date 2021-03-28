@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class Course
+ * @property string $description
+ */
 class Course extends Model
 {
     use HasFactory;
@@ -13,5 +17,10 @@ class Course extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getExcerptAttribute(): string
+    {
+        return substr($this->description, 0, 80) . '...';
     }
 }
