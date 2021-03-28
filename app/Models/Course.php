@@ -35,7 +35,7 @@ class Course extends Model
 
     public function similar(): Collection
     {
-        return $this->category->courses->take(2);
+        return $this->category->courses->where('id', '!=', $this->id)->take(2);
     }
 
     public function getExcerptAttribute(): string
