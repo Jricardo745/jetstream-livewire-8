@@ -30,6 +30,7 @@ class Course extends Model
     public function similar(): Collection
     {
         return Course::query()
+            ->with('user')
             ->where('category_id', $this->category_id)
             ->limit(2)
             ->get();
