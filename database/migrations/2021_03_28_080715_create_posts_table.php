@@ -15,7 +15,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('course_id');
+
+            $table->string('name');
+            $table->boolean('free')->default(0);
+
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
