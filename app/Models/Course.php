@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Class Course
  * @property string $description
+ * @property int $category_id
+ * @property Category $category
  */
 class Course extends Model
 {
@@ -26,14 +28,14 @@ class Course extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function similar(): Collection
     {
-        return Course::query()
-            ->with('user')
-            ->where('category_id', $this->category_id)
-            ->limit(2)
-            ->get();
+        return $this->category->courses->take(2);
     }
 
     public function getExcerptAttribute(): string

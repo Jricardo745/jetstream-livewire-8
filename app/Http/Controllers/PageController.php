@@ -14,7 +14,7 @@ class PageController extends Controller
 
     public function course(Course $course): View
     {
-        $course->load('posts');
+        $course->load('posts', 'category.courses.user');
 
         return view('course', [
             'course' => $course,
