@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +25,7 @@ class PostFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'free' => $this->faker->boolean,
-            'course_id' => $this->faker->numberBetween(1, 10)
+            'course_id' => Course::query()->inRandomOrder()->value('id')
         ];
     }
 }
